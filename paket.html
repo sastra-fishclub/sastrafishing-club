@@ -6,57 +6,102 @@
     <title>Paket - Sastra Fishing Club</title>
     <link rel="icon" href="img/logo.jpeg" type="image/jpeg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <style>
-        /* --- VARIABLES (Diseragamkan) --- */
-        :root { --primary: #9A3B3B; --bg: #F9F5F0; --glass: rgba(255, 255, 255, 0.7); }
+        /* --- VARIABLES --- */
+        :root { --sastra-cyan: #00C4CC; --bg-light: #F2FDFF; --text-dark: #2C3E50; --white: #ffffff; }
         
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: #444; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-light); color: var(--text-dark); }
         .serif-font { font-family: 'Playfair Display', serif; }
 
-        /* --- NAVBAR AESTHETIC (SAMA) --- */
-        .navbar-aesthetic { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(15px); padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .nav-link { color: #555 !important; font-weight: 500; margin-left: 20px; transition: 0.3s; }
-        .nav-link:hover, .nav-link.active { color: var(--primary) !important; transform: translateY(-1px); }
+        /* --- NAVBAR --- */
+        .navbar-sastra { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 20px rgba(0, 196, 204, 0.1); }
+        
+        /* --- NEW NAVBAR TYPOGRAPHY --- */
+        .brand-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--sastra-cyan);
+            letter-spacing: 0.5px;
+        }
 
-        /* --- STYLE KHUSUS PAKET (TIDAK DIUBAH) --- */
+        .nav-link { color: var(--text-dark) !important; font-weight: 600; margin-left: 20px; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { color: var(--sastra-cyan) !important; transform: translateY(-1px); }
+        .logo-img { height: 50px; width: auto; object-fit: contain; }
+
+        /* --- PACKAGE CARDS WITH IMAGE --- */
         .price-card {
             background: #fff;
-            border-radius: 30px;
-            padding: 40px;
-            border: none;
+            border-radius: 20px;
+            border: 1px solid #eef;
             transition: 0.4s;
             position: relative;
             overflow: hidden;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
-        .price-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(154, 59, 59, 0.15); }
-        .price-tag { font-size: 3rem; font-weight: 700; color: var(--primary); font-family: 'Playfair Display', serif; }
-        .btn-price { background: #333; color: #fff; border-radius: 50px; padding: 12px 30px; width: 100%; border:none; margin-top: 20px; transition: 0.3s;}
-        .btn-price:hover { background: var(--primary); }
+        .price-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,196,204,0.15); border-color: var(--sastra-cyan); }
+        
+        /* Area Gambar Paket */
+        .package-img-wrap {
+            height: 220px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .package-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        .price-card:hover .package-img-wrap img { transform: scale(1.1); }
+
+        .card-body-custom { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
+
+        .price-tag { font-size: 3rem; font-weight: 700; color: var(--sastra-cyan); font-family: 'Playfair Display', serif; line-height: 1; margin-bottom: 5px; }
+        
+        .btn-price { 
+            background: var(--text-dark); color: #fff; border-radius: 50px; padding: 12px 30px; width: 100%; 
+            border:none; margin-top: auto; transition: 0.3s; font-weight: bold;
+        }
+        .btn-price:hover { background: var(--sastra-cyan); }
+        
         .popular-badge {
-            position: absolute; top: 20px; right: 20px; 
-            background: var(--primary); color: #fff; 
-            padding: 5px 15px; border-radius: 20px; font-size: 0.8rem;
+            position: absolute; top: 15px; right: 15px; background: var(--sastra-cyan); color: #fff; 
+            padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; z-index: 2;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* --- FOOTER (SAMA) --- */
-        footer { background-color: #fff; border-top: 1px solid #eee; padding: 50px 0; text-align: center; margin-top: 80px;}
+        /* --- FOOTER --- */
+        footer { background: #fff; padding: 50px 0; text-align: center; border-top: 1px solid #eef; margin-top: 80px;}
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-aesthetic sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-sastra sticky-top">
         <div class="container">
-            <a class="navbar-brand serif-font fs-4 fw-bold" href="index.html" style="color: var(--primary);">Sastra Fishing Club</a>
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <img src="img/logo.jpeg" alt="Logo Sastra" class="logo-img">
+                <span class="brand-text">Sastra Fishing Club</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav align-items-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
                     <li class="nav-item"><a class="nav-link active" href="paket.html">Paket</a></li>
                     <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Tentang & Galeri</a></li>
                 </ul>
             </div>
         </div>
@@ -64,66 +109,93 @@
 
     <div class="container py-5">
         <div class="text-center mb-5" data-aos="fade-down">
-            <h1 class="serif-font display-4 mb-3">Membership & Sewa</h1>
-            <p class="text-muted">Pilih paket yang sesuai dengan gaya memancing Anda.</p>
+            <h1 class="serif-font display-4 mb-3" style="color: var(--sastra-cyan);">Membership & Sewa</h1>
+            <p class="text-muted">Pilih paket alat yang sesuai dengan gaya memancing Anda.</p>
         </div>
 
-        <div class="row g-4 align-items-center">
+        <div class="row g-4 align-items-stretch">
+            
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="price-card">
-                    <h4 class="text-uppercase ls-2 mb-4 text-muted small fw-bold">Pemula</h4>
-                    <div class="price-tag">25<span class="fs-4">k</span></div>
-                    <p class="text-muted mb-4">/ set tegek</p>
-                    <ul class="list-unstyled mb-4 small text-secondary">
-                        <li class="mb-2">✓ Joran Tegek Ringan</li>
-                        <li class="mb-2">✓ Kail & Senar Dasar</li>
-                        <li class="mb-2">✓ Umpan Pelet Standar</li>
-                    </ul>
-                    <button class="btn-price">Pilih Basic</button>
+                    <div class="package-img-wrap">
+                        <img src="img/jor-tegek.jpeg" alt="Joran Tegek">
+                    </div>
+                    
+                    <div class="card-body-custom">
+                        <h5 class="text-uppercase ls-2 text-muted fw-bold mb-3">Paket Pemula</h5>
+                        <div class="price-tag">25<span class="fs-4">k</span></div>
+                        <p class="text-muted mb-4 small">/ set tegek</p>
+                        
+                        <ul class="list-unstyled mb-4 text-secondary text-start mx-auto" style="max-width: 80%;">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Joran Tegek Ringan</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>1 Set Kail & Senar</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Umpan Pelet Dasar</li>
+                        </ul>
+                        
+                        <button class="btn-price">Pilih Basic</button>
+                    </div>
                 </div>
             </div>
 
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="price-card shadow-lg border border-2" style="border-color: var(--primary) !important;">
+                <div class="price-card shadow-lg border border-2 border-info">
                     <div class="popular-badge">POPULAR</div>
-                    <h4 class="text-uppercase ls-2 mb-4 text-muted small fw-bold">Pro Master</h4>
-                    <div class="price-tag">75<span class="fs-4">k</span></div>
-                    <p class="text-muted mb-4">/ set reel</p>
-                    <ul class="list-unstyled mb-4 text-secondary">
-                        <li class="mb-2">✓ Joran Carbon Reel</li>
-                        <li class="mb-2">✓ Senar PE & Kail Cadangan</li>
-                        <li class="mb-2">✓ Pelampung Sensitif</li>
-                        <li class="mb-2">✓ **Free** Air Mineral</li>
-                    </ul>
-                    <button class="btn-price" style="background: var(--primary);">Pilih Pro</button>
+                    <div class="package-img-wrap">
+                        <img src="img/jor-master.jpeg" alt="Joran Reel">
+                    </div>
+
+                    <div class="card-body-custom">
+                        <h5 class="text-uppercase ls-2 text-info fw-bold mb-3">Pro Master</h5>
+                        <div class="price-tag">75<span class="fs-4">k</span></div>
+                        <p class="text-muted mb-4 small">/ set reel</p>
+                        
+                        <ul class="list-unstyled mb-4 text-secondary text-start mx-auto" style="max-width: 80%;">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Joran Carbon Reel</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Senar PE & Kail Cadangan</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Pelampung Sensitif</li>
+                            <li class="mb-2"><i class="bi bi-gift-fill text-warning me-2"></i><b>Free</b> Air Mineral</li>
+                        </ul>
+                        
+                        <button class="btn-price" style="background: var(--sastra-cyan);">Pilih Pro</button>
+                    </div>
                 </div>
             </div>
 
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                 <div class="price-card">
-                    <h4 class="text-uppercase ls-2 mb-4 text-muted small fw-bold">Entrance</h4>
-                    <div class="price-tag">30<span class="fs-4">k</span></div>
-                    <p class="text-muted mb-4">/ orang</p>
-                    <ul class="list-unstyled mb-4 small text-secondary">
-                        <li class="mb-2">✓ Akses Seharian Penuh</li>
-                        <li class="mb-2">✓ Gazebo Sharing</li>
-                        <li class="mb-2">✓ WiFi High Speed</li>
-                    </ul>
-                    <button class="btn-price">Pilih Tiket</button>
+                    <div class="package-img-wrap">
+                        <img src="img/gazebo.png" alt="Lokasi">
+                    </div>
+
+                    <div class="card-body-custom">
+                        <h5 class="text-uppercase ls-2 text-muted fw-bold mb-3">Entrance Ticket</h5>
+                        <div class="price-tag">30<span class="fs-4">k</span></div>
+                        <p class="text-muted mb-4 small">/ orang</p>
+                        
+                        <ul class="list-unstyled mb-4 text-secondary text-start mx-auto" style="max-width: 80%;">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Akses Seharian Penuh</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Gazebo Sharing</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>WiFi High Speed</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Colokan Listrik</li>
+                        </ul>
+                        
+                        <button class="btn-price">Pilih Tiket</button>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 
-  <footer>
+    <footer>
         <div class="container">
-            <a class="serif-font fs-2 text-decoration-none fw-bold fst-italic" href="#" style="color: var(--primary);">Sastra Fishing Club</a>
-            <div class="mt-4 mb-4">
-                <a href="https://www.instagram.com/sastra_fishingclub?igsh=d2Z3emJvbmszdml1&utm_source=qr"  target="_blank" class="text-muted mx-2 fs-5"><i class="bi bi-instagram"></i></a>
-                <a href="https://wa.me/6282246559115"  target="_blank" class="text-muted mx-2 fs-5"><i class="bi bi-whatsapp"></i></a>
-                <a href="https://www.facebook.com/share/185wZatHwu/?mibextid=wwXIfr" target="_blank"class="text-muted mx-2 fs-5"><i class="bi bi-facebook"></i></a>
+            <img src="img/logo.jpeg" alt="Logo Sastra" height="50" class="mb-3">
+            <div class="mb-4">
+                <a href="https://www.instagram.com/sastra_fishingclub" target="_blank" class="text-info mx-2 fs-4"><i class="bi bi-instagram"></i></a>
+                <a href="https://wa.me/6282246559115" target="_blank" class="text-info mx-2 fs-4"><i class="bi bi-whatsapp"></i></a>
+                <a href="https://www.facebook.com/share/185wZatHwu/?mibextid=wwXIfr" class="text-info mx-2 fs-4"><i class="bi bi-facebook"></i></a>
             </div>
-            <p class="small opacity-50">© 2026 Sastra Fishing Club. All Rights Reserved.<br>Designed with Passion.</p>
+            <p class="small text-muted">© 2026 Sastra Fishing Club. All Rights Reserved.</p>
         </div>
     </footer>
 

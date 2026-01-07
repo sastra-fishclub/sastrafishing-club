@@ -3,170 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontak - Sastra Fishing Club</title>
+    <title>About & Gallery - Sastra Fishing Club</title>
     <link rel="icon" href="img/logo.jpeg" type="image/jpeg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        /* --- VARIABLES (Diseragamkan) --- */
+        /* --- GLOBAL VARIABLES --- */
         :root {
-            --primary: #9A3B3B;
-            --bg: #F9F5F0;
-            --glass: rgba(255, 255, 255, 0.8);
+            --sastra-cyan: #00C4CC;
+            --bg-light: #F2FDFF;
+            --text-dark: #2C3E50;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: #444;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             overflow-x: hidden;
         }
 
-        h1, h2, h3, .serif-font { font-family: 'Playfair Display', serif; }
+        h1, h2, h3, h4, .serif-font { font-family: 'Playfair Display', serif; }
 
-        /* --- NAVBAR AESTHETIC (SAMA) --- */
-        .navbar-aesthetic {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            padding: 20px 0;
+        /* --- NAVBAR --- */
+        .navbar-sastra {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 196, 204, 0.1);
+            padding: 15px 0;
         }
-        .nav-link { color: #555 !important; font-weight: 500; margin-left: 20px; transition: 0.3s; }
-        .nav-link:hover, .nav-link.active { color: var(--primary) !important; transform: translateY(-1px); }
+        
+        /* --- NEW NAVBAR TYPOGRAPHY --- */
+        .brand-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--sastra-cyan);
+            letter-spacing: 0.5px;
+        }
 
-        /* --- STYLE KHUSUS CONTACT (TIDAK DIUBAH) --- */
-        .profile-hero {
-            height: 60vh;
-            display: flex; align-items: center; justify-content: center; text-align: center;
-            background: url('img/about-isi.jpg') center/cover no-repeat;
+        .nav-link { color: var(--text-dark) !important; font-weight: 600; margin-left: 20px; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { color: var(--sastra-cyan) !important; }
+        .logo-img { height: 50px; width: auto; object-fit: contain; }
+
+        /* --- NEW: AESTHETIC VIDEO FRAME --- */
+        .video-frame-container {
             position: relative;
+            padding: 15px; /* Ruang untuk efek offset */
         }
-        .profile-hero::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4);
-        }
-        .story-img {
-            width: 100%; height: 400px; object-fit: cover; border-radius: 30px;
-            box-shadow: 20px 20px 0px var(--primary);
-        }
-        .contact-card {
-            background: #fff; border-radius: 20px; padding: 40px; text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; height: 100%;
-            border: 1px solid rgba(0,0,0,0.02);
-        }
-        .contact-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(154, 59, 59, 0.1); }
-        .btn-wa {
-            background-color: #25D366; color: white; border: none; padding: 12px 30px;
-            border-radius: 50px; font-weight: bold; width: 100%; display: block; text-decoration: none;
-            transition: 0.3s;
-        }
-        .btn-wa:hover { background-color: #1ebc57; color: white; transform: scale(1.02); }
-        .btn-email {
-            background-color: var(--primary); color: white; border: none; padding: 12px 30px;
-            border-radius: 50px; font-weight: bold; width: 100%; display: block; text-decoration: none;
-            transition: 0.3s;
-        }
-        .btn-email:hover { background-color: #7a2b2b; color: white; transform: scale(1.02); }
 
-        /* --- FOOTER (SAMA) --- */
-        footer { background-color: #fff; border-top: 1px solid #eee; padding: 50px 0; text-align: center; margin-top: 80px;}
+        /* Latar belakang dekoratif (efek offset cyan) */
+        .video-frame-bg {
+            position: absolute;
+            top: 25px; left: 25px; /* Menggeser latar belakang */
+            width: calc(100% - 25px);
+            height: calc(100% - 25px);
+            background-color: var(--sastra-cyan);
+            border-radius: 30px;
+            opacity: 0.15; /* Transparan */
+            z-index: 1;
+        }
+
+        /* Pembungkus video utama */
+        .video-wrapper {
+            position: relative;
+            z-index: 2; /* Berada di atas latar dekoratif */
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 196, 204, 0.25); /* Bayangan cyan halus */
+            border: 4px solid #fff; /* Bingkai putih bersih */
+            
+            /* KUNCI RESPONSIF ANTI-GEPENG */
+            width: 100%;
+            aspect-ratio: 16 / 9; /* Memaksa rasio layar lebar standar */
+        }
+
+        .local-video-framed {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Memastikan video mengisi area tanpa gepeng */
+        }
+
+        /* --- STORY SECTION --- */
+        .story-section { padding-bottom: 80px; }
+        .story-card {
+            background: #fff; border-radius: 30px; padding: 60px;
+            box-shadow: 0 20px 60px rgba(0, 196, 204, 0.1);
+            border: 1px solid rgba(0, 196, 204, 0.1);
+            margin-top: 50px;
+        }
+        .section-divider { width: 60px; height: 3px; background: var(--sastra-cyan); margin: 25px auto; }
+
+        /* --- GALLERY GRID --- */
+        .gallery-item {
+            position: relative; border-radius: 20px; overflow: hidden; height: 350px; cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.4s ease;
+        }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .gallery-item:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 196, 204, 0.3); }
+        .gallery-item:hover img { transform: scale(1.1); }
+        
+        /* --- INFO BOX --- */
+        .info-box {
+            background: #fff; padding: 30px; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eef;
+            height: 100%; text-align: center; transition: 0.3s;
+        }
+        .info-box:hover { border-color: var(--sastra-cyan); transform: translateY(-5px); }
+        .info-icon { font-size: 2rem; color: var(--sastra-cyan); margin-bottom: 15px; }
+
+        footer { background: #fff; padding: 50px 0; text-align: center; border-top: 1px solid #eef; margin-top: 80px;}
+        @media (max-width: 768px) { .story-card { padding: 30px; } }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-aesthetic sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-sastra sticky-top">
         <div class="container">
-            <a class="navbar-brand serif-font fs-4 fw-bold" href="index.html" style="color: var(--primary);">Sastra Fishing Club</a>
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <img src="img/logo.jpeg" alt="Sastra Fishing Club" class="logo-img">
+                <span class="brand-text">Sastra Fishing Club</span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav align-items-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
                     <li class="nav-item"><a class="nav-link" href="paket.html">Paket</a></li>
                     <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="contact.html">Kontak</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Tentang & Galeri</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <header class="profile-hero">
-        <div class="container position-relative z-2" data-aos="fade-up">
-            <h1 class="serif-font display-3 text-white fst-italic">Our Story</h1>
-            <p class="text-white opacity-90 fs-5 mt-3">Mengenal lebih dekat Sastra Fishing Club.</p>
+    <section class="container pt-5 pb-3 position-relative z-3">
+        <div class="text-center" data-aos="fade-up">
+            <span class="text-uppercase text-info fw-bold letter-spacing-2 small">Tentang Kami</span>
+            <h1 class="serif-font display-3 fw-bold fst-italic mt-3" style="color: var(--sastra-cyan);">Life at Sastra</h1>
+            <p class="fs-5 opacity-75 mt-3">Harmoni Alam & Kuliner Nusantara</p>
+            <div class="section-divider mb-5"></div>
         </div>
-    </header>
+    </section>
 
-    <section class="container py-5 mt-5">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6" data-aos="fade-right">
-                <img src="img/about-hero.jpg" class="story-img">
-            </div>
-            <div class="col-lg-6" data-aos="fade-left">
-                <span class="text-uppercase text-primary fw-bold letter-spacing-2 small">Tentang Kami</span>
-                <h2 class="serif-font display-5 mb-4 mt-2">Harmoni Alam & Kuliner</h2>
-                <p class="text-muted leading-relaxed">
-                    Sastra Fishing Club didirikan pada tahun 2025 dengan satu visi sederhana: <strong>Menciptakan tempat di mana kesabaran memancing berbuah manis di meja makan.</strong>
-                </p>
-                <p class="text-muted">
-                    Kami bukan sekadar pemancingan. Kami adalah destinasi rekreasi keluarga yang menggabungkan kolam pancing standar kompetisi dengan restoran seafood bernuansa pedesaan modern.
-                </p>
-                <div class="d-flex gap-4 mt-4">
-                    <div>
-                        <h3 class="serif-font text-primary fw-bold">10+</h3>
-                        <small class="text-muted">Jenis Ikan</small>
-                    </div>
-                    <div>
-                        <h3 class="serif-font text-primary fw-bold">20+</h3>
-                        <small class="text-muted">Saung Gazebo</small>
-                    </div>
-                    <div>
-                        <h3 class="serif-font text-primary fw-bold">4.9</h3>
-                        <small class="text-muted">Rating Google</small>
+    <section class="container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="video-frame-container" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="video-frame-bg"></div>
+                    
+                    <div class="video-wrapper">
+                        <video autoplay muted loop playsinline class="local-video-framed">
+                            <source src="img/vid.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung tag video ini.
+                        </video>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="container py-5 mt-5 mb-5">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <h2 class="serif-font display-5">Hubungi Kami</h2>
-            <p class="text-muted">Reservasi tempat atau konsultasi acara gathering.</p>
-        </div>
-        <div class="row g-4 justify-content-center">
-            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-                <div class="contact-card">
-                    <div class="bg-light rounded-circle d-inline-flex p-3 mb-4">
-                        <i class="bi bi-whatsapp fs-2 text-success"></i>
+    <section class="story-section container position-relative z-3">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="story-card" data-aos="fade-up">
+                    <div class="row g-5 align-items-center">
+                        <div class="col-md-5 text-center">
+                             <img src="img/logo.jpeg" alt="Logo Besar" class="rounded-circle shadow-lg" style="max-width: 200px; border: 8px solid #E0FBFD;">
+                        </div>
+                        <div class="col-md-7">
+                            <h3 class="serif-font mb-4">Cerita Kami</h3>
+                            <p class="text-muted fs-5" style="line-height: 1.8;">
+                                <strong>Sastra Fishing Club</strong> adalah destinasi di mana kesabaran bertemu dengan kenikmatan. Berdiri sejak 2025, kami menawarkan pengalaman memancing di kolam jernih standar kompetisi yang dipadukan dengan restoran keluarga berkualitas.
+                            </p>
+                            <p class="text-muted">
+                                Misi kami sederhana: <em class="text-info fw-bold">"Catch it, Cook it, Taste it"</em>. Kami ingin setiap pengunjung merasakan kepuasan menangkap ikannya sendiri dan menyantapnya dalam kondisi paling segar di saung kami yang nyaman.
+                            </p>
+                        </div>
                     </div>
-                    <h4 class="serif-font fw-bold">WhatsApp</h4>
-                    <p class="text-muted small mb-4">Respon cepat untuk reservasi harian dan tanya jawab.</p>
-                    <a href="https://wa.me/6282246559115" target="_blank" class="btn-wa"><i class="bi bi-chat-dots me-2"></i> Chat WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="serif-font display-5" style="color: var(--text-dark);">Galeri Momen</h2>
+            <p class="text-muted">Intip keseruan dan suasana di Sastra Fishing Club.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="zoom-in">
+                <div class="gallery-item">
+                    <img src="img/about-hero.jpg" alt="Suasana">
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                <div class="gallery-item">
+                    <img src="img/about-isi.jpg" alt="Makanan">
                 </div>
             </div>
             <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-                <div class="contact-card">
-                    <div class="bg-light rounded-circle d-inline-flex p-3 mb-4">
-                        <i class="bi bi-envelope fs-2" style="color: var(--primary);"></i>
-                    </div>
-                    <h4 class="serif-font fw-bold">Email Bisnis</h4>
-                    <p class="text-muted small mb-4">Untuk penawaran kerjasama, event korporat.</p>
-                    <a href="mailto:hello@sastrafishing.com" class="btn-email"><i class="bi bi-send me-2"></i> Kirim Email</a>
+                <div class="gallery-item">
+                    <img src="img/galeri-1.jpeg" alt="Mancing">
                 </div>
             </div>
-            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
-                <div class="contact-card">
-                    <div class="bg-light rounded-circle d-inline-flex p-3 mb-4">
-                        <i class="bi bi-geo-alt fs-2 text-danger"></i>
-                    </div>
-                    <h4 class="serif-font fw-bold">Lokasi</h4>
-                    <p class="text-muted small mb-4">Jl. Danau Indah, Palembang Sumatera Selatan</p>
-                    <a href="#" class="text-decoration-none fw-bold text-muted border-bottom border-dark pb-1">Lihat di Google Maps</a>
+            <div class="col-md-4" data-aos="zoom-in">
+                <div class="gallery-item">
+                    <img src="img/galeri-2.jpeg" alt="Minuman">
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                <div class="gallery-item">
+                    <img src="img/galeri-3.jpeg" alt="Danau">
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                <div class="gallery-item">
+                    <img src="img/galeri-4.jpeg" alt="Seafood">
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                <div class="gallery-item">
+                    <img src="img/galeri-5.jpeg" alt="Seafood">
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                <div class="gallery-item">
+                    <img src="img/galeri-6.jpeg" alt="Seafood">
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                <div class="gallery-item">
+                    <img src="img/galeri-7.jpeg" alt="Seafood">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5 mt-4 border-top">
+        <div class="text-center mb-5">
+            <h3 class="serif-font text-info">Informasi Kontak</h3>
+        </div>
+        <div class="row g-4 text-center justify-content-center">
+            <div class="col-md-3 col-6" data-aos="fade-up">
+                <div class="info-box">
+                    <i class="bi bi-whatsapp info-icon"></i>
+                    <h6 class="fw-bold">WhatsApp</h6>
+                    <a href="https://wa.me/6282246559115" target="_blank" class="text-decoration-none text-muted small stretched-link">0822-4655-9115</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="info-box">
+                    <i class="bi bi-geo-alt info-icon"></i>
+                    <h6 class="fw-bold">Lokasi</h6>
+                    <p class="text-muted small mb-0">Jl. Danau Indah No. 88</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="info-box">
+                    <i class="bi bi-clock info-icon"></i>
+                    <h6 class="fw-bold">Jam Buka</h6>
+                    <p class="text-muted small mb-0">08:00 - 22:00 WIB</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="info-box">
+                    <i class="bi bi-envelope info-icon"></i>
+                    <h6 class="fw-bold">Email</h6>
+                    <a href="mailto:sastrafishingclub@gmail.com" class="text-decoration-none text-muted small stretched-link">Kirim Email</a>
                 </div>
             </div>
         </div>
@@ -174,13 +283,13 @@
 
     <footer>
         <div class="container">
-            <a class="serif-font fs-2 text-decoration-none fw-bold fst-italic" href="#" style="color: var(--primary);">Sastra Fishing Club</a>
-            <div class="mt-4 mb-4">
-                <a href="https://www.instagram.com/sastra_fishingclub?igsh=d2Z3emJvbmszdml1&utm_source=qr"  target="_blank" class="text-muted mx-2 fs-5"><i class="bi bi-instagram"></i></a>
-                <a href="https://wa.me/6282246559115" target="_blank" class="text-muted mx-2 fs-5"><i class="bi bi-whatsapp"></i></a>
-                <a href="https://www.facebook.com/share/185wZatHwu/?mibextid=wwXIfr" target="_blank" class="text-muted mx-2 fs-5"><i class="bi bi-facebook"></i></a>
+            <img src="img/logo.jpeg" alt="Logo Sastra" height="50" class="mb-3">
+            <div class="mb-4">
+                <a href="https://www.instagram.com/sastra_fishingclub" target="_blank" class="text-info mx-2 fs-4"><i class="bi bi-instagram"></i></a>
+                <a href="https://wa.me/6282246559115" target="_blank" class="text-info mx-2 fs-4"><i class="bi bi-whatsapp"></i></a>
+                <a href="https://www.facebook.com/share/185wZatHwu/?mibextid=wwXIfr" class="text-info mx-2 fs-4"><i class="bi bi-facebook"></i></a>
             </div>
-            <p class="small opacity-50">© 2026 Sastra Fishing Club. All Rights Reserved.<br>Designed with Passion.</p>
+            <p class="small text-muted">© 2026 Sastra Fishing Club. All Rights Reserved.</p>
         </div>
     </footer>
 
